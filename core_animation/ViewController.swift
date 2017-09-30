@@ -9,17 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let zoomImageView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        //let zoomImageView = UIView()
+        zoomImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        zoomImageView.backgroundColor = UIColor.red
+        zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animate)))
+        view.addSubview(zoomImageView)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func animate() {
+        UIView.animate(withDuration: 0.75) {
+                self.zoomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100)
+        }
     }
-
-
 }
 
