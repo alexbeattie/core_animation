@@ -24,8 +24,14 @@ class ViewController: UIViewController {
 
     @objc func animate() {
         UIView.animate(withDuration: 0.75) {
+                //proportionately size animation's width
                 let height = (self.view.frame.width / self.startingFrame.width) * self.startingFrame.height
-                self.zoomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: height)
+            
+                // bring to center of screen
+                let y = (self.view.frame.height / 2) - (height / 2)
+            
+            
+                self.zoomImageView.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: height)
         }
     }
 }
