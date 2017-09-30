@@ -10,12 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     let zoomImageView = UIView()
-
+    let startingFrame = CGRect(x: 0, y: 0, width: 200, height: 100)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //let zoomImageView = UIView()
-        zoomImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        zoomImageView.frame = startingFrame
         zoomImageView.backgroundColor = UIColor.red
         zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animate)))
         view.addSubview(zoomImageView)
@@ -23,7 +24,8 @@ class ViewController: UIViewController {
 
     @objc func animate() {
         UIView.animate(withDuration: 0.75) {
-                self.zoomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100)
+                let height = (self.view.frame.width / self.startingFrame.width) * self.startingFrame.height
+                self.zoomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: height)
         }
     }
 }
